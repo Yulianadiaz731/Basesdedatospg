@@ -1,238 +1,311 @@
-# Proyecto Serverless con AWS Lambda + API Gateway + PostgreSQL (JavaScript)
+# Aplicación Web de Notas con Arquitectura Serverless (Firebase)
 
-Este proyecto implementa una arquitectura **serverless** utilizando **AWS Lambda con JavaScript (Node.js)** como backend, **API Gateway** para exponer endpoints REST y **PostgreSQL** como base de datos administrada desde **pgAdmin**.  
-El desarrollo se realizó en **Visual Studio Code** y está preparado para funcionamiento en AWS.
+## 1. Descripción del Proyecto
+Esta es una aplicación web de notas desarrollada en **JavaScript, HTML y CSS**, utilizando Firebase como backend serverless.  
+Los usuarios pueden crear, editar y eliminar notas en tiempo real gracias a Firebase Firestore.
 
----
-
-## 📁 Estructura del Proyecto
-
-```
-serverless-app/
-├── README.md
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   ├── script.js
-│   └── assets/
-├── backend/
-│   ├── functions/
-│   │   ├── function1/
-│   │   │   ├── index.js
-│   │   │   └── package.json
-│   │   ├── function2/
-│   │   │   ├── index.js
-│   │   │   └── package.json
-│   │   └── function3/
-│   │       ├── index.js
-│   │       └── package.json
-│   └── serverless.yaml   # Configuración para despliegue automatizado (opcional)
-├── database/
-│   ├── schema.sql
-│   ├── connection_test.js
-│   └── queries.md
-├── docs/
-│   ├── api-documentation.md
-│   ├── architecture.md
-│   └── screenshots/
-└── tests/
-    └── function-tests.js
-```
+El proyecto implementa una arquitectura **serverless**, eliminando la necesidad de servidores dedicados y permitiendo escalado automático mediante servicios gestionados.
 
 ---
 
-## 🚀 Descripción General
+## 2. Objetivos
 
-La aplicación cuenta con:
+### Objetivo General
+Desarrollar una aplicación web funcional utilizando servicios cloud serverless, demostrando el uso de Firestore y Firebase Hosting.
 
-- Frontend en **HTML, CSS y JavaScript**
-- Backend serverless con **AWS Lambda en Node.js**
-- API REST administrada con **API Gateway**
-- Base de datos **PostgreSQL**
-- Administración vía **pgAdmin**
-- Conexión segura usando variables de entorno
-
-La arquitectura es completamente escalable y de pago por uso.
-
----
-
-## 🏗️ Arquitectura del Sistema
-
-```
-Frontend (HTML/JS)
-        │
-        ▼
-API Gateway (REST)
-        │
-        ▼
-AWS Lambda (Node.js)
-        │
-        ▼
-AWS RDS PostgreSQL
-```
+### Objetivos Específicos
+- Implementar un frontend funcional con HTML, CSS y JavaScript.  
+- Utilizar Firebase para almacenamiento serverless (Firestore).  
+- Conectar el frontend con la base de datos en tiempo real.  
+- Desplegar la aplicación en Firebase Hosting.  
+- Documentar arquitectura, despliegue y funcionamiento.
 
 ---
 
-## 🧩 Funciones Lambda (Node.js)
+## 3. Arquitectura Serverless
 
-Cada función Lambda está desarrollada en **JavaScript**, por ejemplo:
+### Diagrama (Descripción)
+# Aplicación Web de Notas con Arquitectura Serverless (Firebase)
 
-### 📌 Ejemplo de index.js
+## 1. Descripción del Proyecto
+Esta es una aplicación web de notas desarrollada en **JavaScript, HTML y CSS**, utilizando Firebase como backend serverless.  
+Los usuarios pueden crear, editar y eliminar notas en tiempo real gracias a Firebase Firestore.
 
-```js
-const { Client } = require('pg');
+El proyecto implementa una arquitectura **serverless**, eliminando la necesidad de servidores dedicados y permitiendo escalado automático mediante servicios gestionados.
 
-exports.handler = async (event) => {
-    const client = new Client({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
-        port: 5432
-    });
+---
 
-    await client.connect();
+## 2. Objetivos
 
-    const result = await client.query('SELECT * FROM tabla_ejemplo');
+### Objetivo General
+Desarrollar una aplicación web funcional utilizando servicios cloud serverless, demostrando el uso de Firestore y Firebase Hosting.
 
-    await client.end();
+### Objetivos Específicos
+- Implementar un frontend funcional con HTML, CSS y JavaScript.  
+- Utilizar Firebase para almacenamiento serverless (Firestore).  
+- Conectar el frontend con la base de datos en tiempo real.  
+- Desplegar la aplicación en Firebase Hosting.  
+- Documentar arquitectura, despliegue y funcionamiento.
 
-    return {
-        statusCode: 200,
-        body: JSON.stringify(result.rows)
-    };
+---
+
+## 3. Arquitectura Serverless
+
+### Diagrama (Descripción)
+Frontend (HTML, CSS, JS)
+↓
+Firebase Hosting
+↓
+Firestore Database (Serverless)
+↓
+Reglas de Seguridad Firestore
+
+### Componentes
+- **Firebase Firestore:** Base de datos NoSQL responsable de almacenar las notas.
+- **Firebase Hosting:** Servicio de hosting global y seguro con CDN y SSL automático.
+- **Firebase Auth (opcional):** Permite manejo de autenticación.
+- **Cloud Functions (opcional):** Para lógica backend adicional.
+
+---
+
+## 4. Funcionalidades
+
+### Frontend
+- Crear notas.
+- Listar notas en tiempo real.
+- Editar notas.
+- Eliminar notas.
+- Validación básica de campos.
+- Manejo de errores simples.
+
+### Backend (Firebase)
+- Firestore como almacenamiento serverless.
+- Reglas de seguridad para protección de datos.
+- Hosting con SSL.
+- (Opcional) Cloud Functions para validaciones o automatizaciones.
+
+---
+
+## 5. Tecnologías Utilizadas
+- **HTML5**
+- **CSS3**
+- **JavaScript Vanilla**
+- **Firebase Firestore**
+- **Firebase Hosting**
+- **Firebase CLI**
+
+---
+
+## 6. Estructura del Proyecto
+
+### Componentes
+- **Firebase Firestore:** Base de datos NoSQL responsable de almacenar las notas.
+- **Firebase Hosting:** Servicio de hosting global y seguro con CDN y SSL automático.
+- **Firebase Auth (opcional):** Permite manejo de autenticación.
+- **Cloud Functions (opcional):** Para lógica backend adicional.
+
+---
+
+## 4. Funcionalidades
+
+### Frontend
+- Crear notas.
+- Listar notas en tiempo real.
+- Editar notas.
+- Eliminar notas.
+- Validación básica de campos.
+- Manejo de errores simples.
+
+### Backend (Firebase)
+- Firestore como almacenamiento serverless.
+- Reglas de seguridad para protección de datos.
+- Hosting con SSL.
+- (Opcional) Cloud Functions para validaciones o automatizaciones.
+
+---
+
+## 5. Tecnologías Utilizadas
+- **HTML5**
+- **CSS3**
+- **JavaScript Vanilla**
+- **Firebase Firestore**
+- **Firebase Hosting**
+- **Firebase CLI**
+
+---
+
+## 6. Estructura del Proyecto
+
+### Componentes
+- **Firebase Firestore:** Base de datos NoSQL responsable de almacenar las notas.
+- **Firebase Hosting:** Servicio de hosting global y seguro con CDN y SSL automático.
+- **Firebase Auth (opcional):** Permite manejo de autenticación.
+- **Cloud Functions (opcional):** Para lógica backend adicional.
+
+---
+
+## 4. Funcionalidades
+
+### Frontend
+- Crear notas.
+- Listar notas en tiempo real.
+- Editar notas.
+- Eliminar notas.
+- Validación básica de campos.
+- Manejo de errores simples.
+
+### Backend (Firebase)
+- Firestore como almacenamiento serverless.
+- Reglas de seguridad para protección de datos.
+- Hosting con SSL.
+- (Opcional) Cloud Functions para validaciones o automatizaciones.
+
+---
+
+## 5. Tecnologías Utilizadas
+- **HTML5**
+- **CSS3**
+- **JavaScript Vanilla**
+- **Firebase Firestore**
+- **Firebase Hosting**
+- **Firebase CLI**
+
+---
+
+## 6. Estructura del Proyecto
+notas-app/
+│── README.md
+│── firebase.json
+│── firestore.rules
+│── public/
+│ ├── index.html
+│ ├── style.css
+│ ├── script.js
+│ └── assets/
+└── functions/ (opcional)
+├── index.js
+└── package.json
+
+---
+
+## 7. Instalación y Configuración
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/TU-USUARIO/TU-REPO.git
+cd TU-REPO
+2. Instalar Firebase CLI
+npm install -g firebase-tools
+3. Iniciar sesión
+firebase login
+4. Inicializar Firebase en el proyecto
+firebase init
+Seleccionar:
+
+Hosting
+
+Firestore
+
+Functions (si aplican)
+
+5. Ejecutar en local
+firebase serve
+
+6. Desplegar en la nube
+firebase deploy
+8. Variables de Configuración (Firebase)
+
+Agregar tu configuración en script.js:
+
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_PROJECT.firebaseapp.com",
+  projectId: "TU_PROJECT",
+  storageBucket: "TU_PROJECT.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
 };
-```
 
-### 📌 package.json
+firebase.initializeApp(firebaseConfig);
 
-```json
-{
-  "name": "lambda-function",
-  "version": "1.0.0",
-  "dependencies": {
-    "pg": "^8.11.1"
-  }
-}
-```
+const db = firebase.firestore();
+9. CRUD de Notas (Resumen Técnico)
+Crear una nota
+db.collection("notes").add({
+  title: titulo,
+  content: contenido,
+  timestamp: Date.now()
+});
 
----
+Leer notas en tiempo real
+db.collection("notes").orderBy("timestamp", "desc").onSnapshot(snapshot => {
+  // Render notas
+});
 
-## 🛢️ Base de Datos (PostgreSQL + pgAdmin)
+Actualizar nota
+db.collection("notes").doc(id).update({
+  title: nuevoTitulo,
+  content: nuevoContenido
+});
 
-Archivos incluidos:
+Eliminar nota
+db.collection("notes").doc(id).delete();
 
-| Archivo | Propósito |
-|--------|-----------|
-| `schema.sql` | Estructura de tablas |
-| `connection_test.js` | Script para probar conexión desde Node.js |
-| `queries.md` | Documentación de consultas SQL |
+10. Capturas de Pantalla
 
-### Variables de entorno para Lambda:
+Agregar en /docs/screenshots:
 
-```
-DB_HOST=
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
-DB_PORT=5432
-```
+Vista principal
 
----
+Crear nota
 
-## ⚙️ Configuración e Instalación Local
+Editar nota
 
-### 1️⃣ Clonar el proyecto
+Firestore mostrando documentos
 
-```bash
-git clone <tu-repo>
-cd tu-repo
-```
+Firebase Hosting funcionando
 
-### 2️⃣ Instalar dependencias de funciones Lambda
+11. Costos Estimados (Firebase Free Tier)
 
-```bash
-cd backend/functions/function1
-npm install
-```
+| Servicio        | Costo  | Detalles                                 |
+| --------------- | ------ | ---------------------------------------- |
+| Firestore       | Gratis | 1 GB de almacenamiento, 50k lecturas/día |
+| Hosting         | Gratis | CDN global                               |
+| Auth            | Gratis | Soporta proveedores comunes              |
+| Cloud Functions | Gratis | 2M invocaciones                          |
 
-### 3️⃣ Probar conexión a PostgreSQL
+12. Ventajas del Modelo Serverless
 
-```bash
-node database/connection_test.js
-```
+No requiere administración de servidores.
 
----
+Escalado automático según demanda.
 
-## 🚀 Despliegue en AWS
+Pago por uso.
 
-### 1️⃣ Configurar AWS CLI
+Integración rápida con JavaScript.
 
-```bash
-aws configure
-```
+Despliegue en segundos.
 
-### 2️⃣ Empaquetar una función Lambda
+Base de datos en tiempo real.
 
-```bash
-zip -r function1.zip .
-```
+13. Limitaciones Encontradas
 
-### 3️⃣ Crear función Lambda
+Reglas de Firestore deben configurarse correctamente.
 
-```bash
-aws lambda create-function   --function-name createRecord   --runtime nodejs18.x   --handler index.handler   --role arn:aws:iam::<ID-ACCOUNT>:role/lambda-role   --zip-file fileb://function1.zip
-```
+Límite de lectura/escritura en Firestore.
 
-### 4️⃣ Conectar Lambda a API Gateway
-- Crear API REST  
-- Crear endpoints  
-- Conectar métodos con Lambda  
-- Activar CORS  
-- Deploy en `/prod`
+Vendor lock-in (dependencia del proveedor).
 
----
+Functions pueden tener "cold starts".
 
-## 🌐 Endpoints
+14. URLs del Proyecto
 
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| GET | `/records` | Obtiene registros |
-| POST | `/create` | Inserta registro |
-| DELETE | `/delete/{id}` | Elimina registro |
+URL Firebase Hosting:
+https://TU-PROYECTO.web.app
 
----
+Consola Firebase:
+https://console.firebase.google.com
 
-## 🧪 Pruebas
+15. Conclusiones
 
-```bash
-npm test
-```
-
----
-
-## 🖼️ Capturas de Pantalla
-
-Se encuentran en:
-
-```
-/docs/screenshots/
-```
-
----
-
-## ✔️ Ventajas del Modelo Serverless
-
-- No requiere servidores
-- Ultra escalable
-- Pago por uso
-- Integración nativa con AWS
-- Bajo mantenimiento
-
----
-
-## 👩‍💻 Autor
-
-**Yuliana Vargas**  
-Visual Studio Code · AWS · Node.js · PostgreSQL
-
+La aplicación demuestra cómo Firebase y el modelo serverless permiten construir aplicaciones funcionales y escalables sin gestionar infraestructura. La arquitectura utilizada es ideal para proyectos que requieren sincronización en tiempo real, simplicidad y un despliegue rápido.
