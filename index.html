@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>App de Tareas con Firebase</title>
+</head>
+<body>
+  <h1>📝 App de Tareas con Firebase</h1>
+
+<!-- Registro -->
+<h2>Registro</h2>
+<form id="registroForm">
+  <input type="email" name="email" placeholder="Correo" required>
+  <input type="password" name="password" placeholder="Contraseña" required>
+  <button type="submit">Registrar</button>
+</form>
+
+<!-- Inicio de sesión -->
+<h2>Iniciar sesión</h2>
+<form id="loginForm">
+  <input type="email" name="email" placeholder="Correo" required>
+  <input type="password" name="password" placeholder="Contraseña" required>
+  <button type="submit">Entrar</button>
+</form>
+
+
+  <!-- Sección de tareas -->
+  <div id="panel" style="display:none;">
+    <h2>Mis tareas</h2>
+    <input type="text" id="tareaInput" placeholder="Escribe una tarea...">
+    <button id="btnAgregar">Agregar tarea</button>
+
+    <ul id="listaTareas"></ul>
+
+    <button id="btnLogout">Cerrar sesión</button>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>
+
